@@ -13,13 +13,14 @@ Read Licence file for more information.
 * Gaël Chamoulaud (gchamoul at redhat dot com)
 * James Laska (jlaska at redhat dot com)
 
-## Type and Provider
+## Types and Providers
 
 The module adds the following new types:
 
 * `rhsm_register` for managing Red Hat Subscriptions
+* `rhsm_repo'     for managing Red Hat Repository Subscriptions
 
-### Parameters
+### rhsm_register Parameters
 
 - **activationkeys**: The activation key to use when registering the system (cannot be used with username and password)
 - **ensure**: Valid values are `present`, `absent`. Default value is `present`.
@@ -30,7 +31,7 @@ The module adds the following new types:
 - **username**: The username to use when registering the system
 - **pool**: A specific license pool to attach the system to
 
-### Example
+### rhsm_register Examples
 
 Register clients to Red Hat Subscription Management using an activation key:
 
@@ -62,6 +63,26 @@ rhsm_register { 'subscription.rhn.example.com':
 }
 </pre>
 
+### rhsm_repo Parameters
+
+- **ensure**: Valid values are `present`, `absent`. Default value is `present`.
+- **name**: The name of the repo registration to add
+
+### rhsm_repo Examples
+
+Add a repo:
+
+<pre>
+rhsm_repo { 'rhel-7-server-optional-rpms': }
+</pre>
+
+Remove a repo:
+
+<pre>
+rhsm_repo { 'rhel-7-server-optional-rpms': 
+  ensure	  => 'absent',
+}
+</pre>
 
 ## Installing
 
